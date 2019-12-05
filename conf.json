@@ -1,0 +1,15 @@
+{
+  "port": 53055,
+  "shellbash":"/bin/sh",
+  "minecraftdir": "/home/ubuntu/wxm",
+  "currentarchive": "/home/ubuntu/wxm/Iron",
+  "authentication": false,
+  "user": [
+    {
+      "username": "alming530@163.com",
+      "password": "alming530@163.com"
+    },{
+
+    }
+  ]
+}
