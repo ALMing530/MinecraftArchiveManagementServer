@@ -2,21 +2,16 @@ package main
 
 import (
 	"MinecraftArchiveManagementServer/conf"
-	_ "MinecraftArchiveManagementServer/routers"
 	"MinecraftArchiveManagementServer/server"
 	"MinecraftArchiveManagementServer/shell"
 	"encoding/json"
 	"fmt"
-	"github.com/astaxie/beego"
 	"os"
 	"strconv"
 )
 
 func main() {
-	go initArchiveManage()
-		beego.Run()
-	//maps:=filetools.ReadProperties("Oracle.properties")
-	//fmt.Println(maps["user"])
+	initArchiveManage()
 }
 func initArchiveManage() {
 	initGlobalConf()

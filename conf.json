@@ -1,8 +1,8 @@
 {
   "port": 53055,
   "shellbash":"/bin/sh",
-  "minecraftdir": "/home/ubuntu/wxm",
-  "currentarchive": "/home/ubuntu/wxm/Iron",
+  "minecraftdir": "/",
+  "currentarchive": "F:/API",
   "authentication": false,
   "user": [
     {

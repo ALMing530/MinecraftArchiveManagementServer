@@ -101,17 +101,17 @@ func sendFile(conn net.Conn) {
 	fileInfo, _ := os.Lstat(conf.GlobalConf.CurrentArchive)
 	nameHasExtend := fileInfo.Name()
 	nameHasNotExtend := strings.Split(nameHasExtend, ".")[0]
-	fmt.Println(nameHasNotExtend)
-	filetools.Compress(conf.GlobalConf.CurrentArchive, "tempzip/"+nameHasNotExtend+".zip")
-	name := fileInfo.Name()
-	fileLength := float64(fileInfo.Size())
+	destFile:= "tempzip/"+nameHasNotExtend+".zip"
+	err:=filetools.Compress(conf.GlobalConf.CurrentArchive, destFile)
+	zipFileInfo,_:=os.Lstat("tempzip/"+nameHasNotExtend+".zip")
+	fileLength := float64(zipFileInfo.Size())
 	sendTime := time.Now().Format("2006-01-02 03:04:05")
 	fileType := "file"
 	if fileInfo.IsDir() {
 		fileType = "Directory"
 	}
 	params := entity.Params{
-		Name:   name,
+		Name:   nameHasExtend,
 		Type:   fileType,
 		Length: fileLength,
 		Time:   sendTime,
@@ -121,12 +121,13 @@ func sendFile(conn net.Conn) {
 	paramLength := int32(len(paramsBinary))
 	_, _ = conn.Write(parseInt32ToBytes(paramLength))
 	_, _ = conn.Write(paramsBinary)
-	file, err := os.Open("zip/API.zip")
+	file, err := os.Open(destFile)
 	checkError(err)
 	buffer := make([]byte, 1024)
 	count := 0
 	for {
-		read, _ := file.Read(buffer)
+		read, err := file.Read(buffer)
+		fmt.Println(err)
 		if read != 0 {
 			conn.Write(buffer[0:read])
 		} else {

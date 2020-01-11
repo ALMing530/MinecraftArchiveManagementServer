@@ -64,13 +64,13 @@ params:
 func Compress(srcFile string, destZip string) error {
 	srcFileInfo, _ := os.Lstat(srcFile)
 	srcFileName := srcFileInfo.Name()
-	zipfile, err := os.Create(destZip)
+	zipFile, err := os.Create(destZip)
 	if err != nil {
 		return err
 	}
-	defer zipfile.Close()
+	defer zipFile.Close()
 
-	archive := zip.NewWriter(zipfile)
+	archive := zip.NewWriter(zipFile)
 	defer archive.Close()
 
 	filepath.Walk(srcFile, func(path string, info os.FileInfo, err error) error {
