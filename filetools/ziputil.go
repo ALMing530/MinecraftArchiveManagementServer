@@ -26,14 +26,14 @@ func UnCompress(fileDir string) {
 		if file.FileInfo().IsDir() {
 			err := os.MkdirAll(minecraftDir+file.Name, os.ModeDir)
 			checkError(err)
-			err = os.Chmod(minecraftDir+file.Name, 0755)
+			//err = os.Chmod(minecraftDir+file.Name, 0755)
 			checkError(err)
 		} else {
 			parentPath := getDir(file.Name)
 			if parentPath != "" {
 				err := os.MkdirAll(minecraftDir+parentPath, os.ModeDir)
 				checkError(err)
-				err = os.Chmod(minecraftDir+parentPath, 0755)
+				//err = os.Chmod(minecraftDir+parentPath, 0755)
 				checkError(err)
 			}
 			openFile, err := file.Open()
@@ -41,7 +41,7 @@ func UnCompress(fileDir string) {
 			newFile, err := os.Create(minecraftDir + file.Name)
 			fmt.Println(minecraftDir + file.Name)
 			checkError(err)
-			err = os.Chmod(minecraftDir+file.Name, 0755)
+			//err = os.Chmod(minecraftDir+file.Name, 0755)
 			checkError(err)
 			_, err = io.Copy(newFile, openFile)
 			err = openFile.Close()
