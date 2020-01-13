@@ -88,7 +88,7 @@ func handleData(conn net.Conn) (isConnect bool) {
 		checkError(err)
 		shell.Minecraft("stop")           //关闭minecraft服务器
 		filetools.UnCompress(file.Name()) //解压读取到的文件
-		_, err = conn.Write([]byte("File uploade done"))
+		_, err = conn.Write([]byte("000"))
 		shell.Minecraft("start") //启动minecraft服务器
 
 	case 2:
